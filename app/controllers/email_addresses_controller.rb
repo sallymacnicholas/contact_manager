@@ -14,7 +14,7 @@ class EmailAddressesController < ApplicationController
 
   # GET /email_addresses/new
   def new
-    @email_address = EmailAddress.new
+    @email_address = EmailAddress.new(person_id: params[:person_id])
   end
 
   # GET /email_addresses/1/edit
@@ -56,7 +56,7 @@ class EmailAddressesController < ApplicationController
   def destroy
     @email_address.destroy
     respond_to do |format|
-      format.html { redirect_to email_addresses_url, notice: 'Email address was successfully destroyed.' }
+      format.html { redirect_to @email_address.person, notice: 'Email address was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
