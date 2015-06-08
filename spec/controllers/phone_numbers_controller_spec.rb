@@ -68,6 +68,11 @@ RSpec.describe PhoneNumbersController, type: :controller do
   end
 
   describe "POST #create" do
+    describe "with valid params" do
+      let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith')}
+      let(:valid_attributes) { {number: '555-1234', person_id: alice.id} }
+    end
+
     context "with valid params" do
       it "creates a new PhoneNumber" do
         expect {
@@ -81,9 +86,11 @@ RSpec.describe PhoneNumbersController, type: :controller do
         expect(assigns(:phone_number)).to be_persisted
       end
 
-      it "redirects to the created phone_number" do
+      it "redirects to the phone number's person" do
+        alice = Person.create(first_name: 'Alice', last_name: 'Smith')
+        valid_attributes = {number: '555-8888', person_id: alice.id}
         post :create, {:phone_number => valid_attributes}, valid_session
-        expect(response).to redirect_to(PhoneNumber.last)
+        expect(response).to redirect_to(alice)
       end
     end
 

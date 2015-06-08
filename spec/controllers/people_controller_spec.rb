@@ -68,6 +68,11 @@ RSpec.describe PeopleController, type: :controller do
   end
 
   describe "POST #create" do
+    describe "with valid params" do
+      let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith')}
+      let(:valid_attributes) { {number: '555-1234', person_id: alice.id} }
+    end
+
     context "with valid params" do
       it "creates a new Person" do
         expect {
