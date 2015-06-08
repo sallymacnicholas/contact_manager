@@ -22,7 +22,7 @@ RSpec.describe PhoneNumbersController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # PhoneNumber. As you add validations to PhoneNumber, be sure to
-  # adjust the attributes here as well.
+  # adjust the attributes here as welel.
   let(:valid_attributes) {
     { number: "MyString", person_id: 1}
   }
